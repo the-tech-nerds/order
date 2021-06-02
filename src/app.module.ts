@@ -1,10 +1,9 @@
 import {
   CacheModule,
   commonConfig,
-  GatewayMiddleware,
   JwtStrategy,
 } from '@the-tech-nerds/common-services';
-import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { RouterModule } from 'nest-router';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -39,10 +38,10 @@ import { OrderModule } from './order/order.module';
   providers: [AppService, JwtStrategy],
 })
 export class AppModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(GatewayMiddleware).forRoutes({
-      path: '*',
-      method: RequestMethod.ALL,
-    });
-  }
+  // configure(consumer: MiddlewareConsumer) {
+  //   consumer.apply(GatewayMiddleware).forRoutes({
+  //     path: '*',
+  //     method: RequestMethod.ALL,
+  //   });
+  // }
 }

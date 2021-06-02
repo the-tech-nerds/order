@@ -6,7 +6,7 @@ volumes:
   mongodb:
     driver:
       local
-  mongoconfig:
+  # mongoconfig:
 services:
   order:
     container_name: order
@@ -29,21 +29,21 @@ services:
       - authredis
       - orderdb
   orderdb:
-    image: mongo:4.2.3-bionic
+    image: mongo
     container_name: orderdb
     command: mongod --auth
     restart: unless-stopped
     ports:
       - 27018:27017
     environment:
-      - MONGODB_DATABASE=${DB_DATABASE_NAME}
-      - MONGODB_USERNAME=${DB_USERNAME}
-      - MONGODB_PASSWORD=${DB_PASSWORD}
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: grocery123
+      MONGO_INITDB_DATABASE: order
     volumes:
       # seeding scripts
-      - ./mongo-entrypoint:/docker-entrypoint-initdb.d
+      # - ./mongo-entrypoint:/docker-entrypoint-initdb.d
        # named volumes
       - mongodb:/data/db
-      - mongoconfig:/data/configdb
+      # - mongoconfig:/data/configdb
     networks:
        - groceryshop
