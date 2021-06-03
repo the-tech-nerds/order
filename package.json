@@ -47,7 +47,6 @@
     "isomorphic-fetch": "^3.0.0",
     "moment": "^2.29.1",
     "mongodb": "^3.6.9",
-    "mongoose": "^5.12.12",
     "mysql": "^2.18.1",
     "nest-router": "^1.0.9",
     "oauth2orize": "^1.11.0",
