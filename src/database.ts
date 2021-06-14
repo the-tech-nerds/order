@@ -2,9 +2,8 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 const ormconfig: TypeOrmModuleOptions = {
   type: 'mongodb',
-  host: process.env.MANGO_HOST || 'orderdb',
-  url:
-    'mongodb://root:grocery123@orderdb:27017/order?authSource=admin&readPreference=primary&gssapiServiceName=mongodb',
+  host: process.env.MONGO_HOST || 'orderdb',
+  url: `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_DATABASE}:${process.env.MONGO_PORT}/order?authSource=admin&readPreference=primary&gssapiServiceName=mongodb`,
   useNewUrlParser: true,
   maxQueryExecutionTime: 10000,
   entities: [`${__dirname}/**/*.entity{.ts,.js}`],
