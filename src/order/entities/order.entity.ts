@@ -1,5 +1,6 @@
 import BaseEntity from 'src/utils/entities/base-entity';
 import { Entity, ObjectID, ObjectIdColumn, Column } from 'typeorm';
+import { ItemList } from '../itemList';
 
 @Entity()
 export class Order extends BaseEntity {
@@ -26,4 +27,7 @@ export class Order extends BaseEntity {
 
   @Column()
   payment_status: string;
+
+  @Column()
+  items: ItemList[];
 }

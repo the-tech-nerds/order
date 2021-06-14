@@ -1,3 +1,5 @@
+import { ItemList } from '../itemList';
+
 export interface OrderRequest {
   user_id: number;
   status: number;
@@ -6,4 +8,5 @@ export interface OrderRequest {
   total_vat: number;
   payment_menthod: string;
   payment_status: string;
+  itemList: ItemList;
 }
