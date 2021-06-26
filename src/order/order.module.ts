@@ -6,6 +6,7 @@ import { StudentController } from './controller/student.controller';
 import { Inventory } from './entities/inventory.entity';
 import { Order } from './entities/order.entity';
 import { Student } from './entities/student.entity';
+import InventoryCreateEvent from './events/inventory-create.event';
 import InventoryUpdateEvent from './events/inventory-update.event';
 import { CreateOrderService } from './service/create-order.service';
 import { StudentService } from './service/student.service';
@@ -13,7 +14,12 @@ import { StudentService } from './service/student.service';
 @Module({
   imports: [TypeOrmModule.forFeature([Student, Order, Inventory])],
   providers: [ApiResponseService, StudentService, CreateOrderService],
-  controllers: [StudentController, OrderController, InventoryUpdateEvent],
+  controllers: [
+    StudentController,
+    OrderController,
+    InventoryUpdateEvent,
+    InventoryCreateEvent,
+  ],
   exports: [],
 })
 export class OrderModule {}
