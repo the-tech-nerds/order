@@ -15,7 +15,6 @@ export default class InventoryCreateEvent {
   async getUpdatedInventoryInfo(@Payload() message: any) {
     const { data } = JSON.parse(message);
     const inventoryItems = JSON.parse(data);
-    console.log(inventoryItems);
     if (inventoryItems && inventoryItems.length > 0) {
       inventoryItems.map(async (item: any) => {
         const {
@@ -33,27 +32,6 @@ export default class InventoryCreateEvent {
           status,
           price,
         });
-        // const inventory = await this.inventoryRepository.findOne({
-        //   where: {
-        //     uuid: Number(uuid),
-        //   },
-        // });
-        // if (!inventory) {
-        //   await this.inventoryRepository.save({
-        //     product_variance_id: Number(productVarianceId),
-        //     amount: Number(stockCount),
-        //     uuid,
-        //     status,
-        //     price
-        //   });
-        // } else {
-        //   await this.inventoryRepository.update(inventory.id, {
-        //     product_variance_id: Number(productVarianceId),
-        //     amount: Number(stockCount),
-        //     status,
-        //     price
-        //   });
-        // }
       });
     }
   }

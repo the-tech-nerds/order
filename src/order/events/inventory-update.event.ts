@@ -23,14 +23,12 @@ export default class InventoryUpdateEvent {
     } = JSON.parse(data);
 
     if (uuid) {
-      console.log(uuid);
       const inventory = await this.inventoryRepository.findOne({
         where: {
           uuid,
         },
       });
       if (inventory) {
-        console.log(inventory);
         await this.inventoryRepository.update(inventory.id, {
           product_variance_id: Number(productVarianceId),
           amount: Number(stockCount),
