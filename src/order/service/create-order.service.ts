@@ -12,6 +12,7 @@ export class CreateOrderService {
   ) {}
 
   async create(userId: number, orderRequest: OrderRequest): Promise<Order> {
+    orderRequest.itemList.sale_price = 0;
     return this.orderRepository.save(orderRequest);
   }
 }

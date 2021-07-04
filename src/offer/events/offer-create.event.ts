@@ -1,15 +1,10 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Offer } from 'src/order/entities/offer.entity';
-import { Repository } from 'typeorm';
+import OfferCreateService from '../services/offer-create.service';
 
 @Controller()
 export default class OfferCreateEvent {
-  constructor(
-    @InjectRepository(Offer)
-    private offerRepository: Repository<Offer>,
-  ) {}
+  constructor(private readonly offerCreateService: OfferCreateService) {}
 
   @MessagePattern('offer_created')
   async getUpdatedOfferInfo(@Payload() message: any) {
@@ -27,7 +22,7 @@ export default class OfferCreateEvent {
       created_by: createdBy,
     } = JSON.parse(data);
 
-    await this.offerRepository.save({
+    await this.offerCreateService.execute({
       uuid,
       name,
       description,
