@@ -1,6 +1,4 @@
-import { ItemList } from '../itemList';
-
-export interface OrderRequest {
+export interface CartRequest {
   user_id: number;
   status: number;
   total_price: number;
@@ -8,5 +6,4 @@ export interface OrderRequest {
   total_vat: number;
   payment_menthod: string;
   payment_status: string;
-  itemList: ItemList;
 }

@@ -1,21 +1,19 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { Inventory } from '../entities/inventory.entity';
+import InventoryCreateService from '../services/inventory-create.service';
 
 @Controller()
 export default class InventoryCreateEvent {
-  constructor(
-    @InjectRepository(Inventory)
-    private inventoryRepository: Repository<Inventory>,
-  ) {}
+  constructor(private inventoryCreateService: InventoryCreateService) {}
 
   @MessagePattern('inventory_created')
   async getUpdatedInventoryInfo(@Payload() message: any) {
     const { data } = JSON.parse(message);
     const inventoryItems = JSON.parse(data);
+
     if (inventoryItems && inventoryItems.length > 0) {
+      let formattedInventories: Inventory[] = [];
       inventoryItems.map(async (item: any) => {
         const {
           product_variance_id: productVarianceId,
@@ -25,14 +23,19 @@ export default class InventoryCreateEvent {
           price,
         } = item;
 
-        await this.inventoryRepository.save({
-          product_variance_id: Number(productVarianceId),
-          amount: Number(stockCount),
-          uuid,
-          status,
-          price,
-        });
+        formattedInventories = [
+          ...formattedInventories,
+          {
+            product_variance_id: Number(productVarianceId),
+            amount: Number(stockCount),
+            uuid,
+            status,
+            price,
+          } as Inventory,
+        ];
       });
+
+      await this.inventoryCreateService.execute(formattedInventories);
     }
   }
 }
