@@ -14,6 +14,7 @@ import { routes } from './route';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { OrderModule } from './order/order.module';
+import { OfferModule } from './offer/offer.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { OrderModule } from './order/order.module';
     RouterModule.forRoutes(routes),
     CacheModule,
     OrderModule,
+    OfferModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
