@@ -15,6 +15,9 @@ export class Offer extends BaseEntity {
   uuid: string;
 
   @Column()
+  slug: string;
+
+  @Column()
   name: string;
 
   @Column()
@@ -31,6 +34,9 @@ export class Offer extends BaseEntity {
 
   @Column()
   end_date: Date;
+
+  @Column()
+  stock: number;
 
   @Column({
     type: 'enum',

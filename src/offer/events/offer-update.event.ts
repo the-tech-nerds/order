@@ -18,6 +18,8 @@ export default class OfferUpdateEvent {
       start_date: startDate,
       end_date: endDate,
       status,
+      slug,
+      stock,
       updated_at: updatedAt,
       updated_by: updatedBy,
     } = JSON.parse(data);
@@ -27,6 +29,8 @@ export default class OfferUpdateEvent {
         uuid,
         name,
         description,
+        slug,
+        stock: Number(stock),
         total_price: Number(totalPrice),
         offer_detail: offerDetail,
         start_date: startDate,
