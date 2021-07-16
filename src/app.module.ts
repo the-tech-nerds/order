@@ -15,6 +15,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { OrderModule } from './order/order.module';
 import { OfferModule } from './offer/offer.module';
+import { DiscountModule } from './discount/discount.module';
+import { InventoryModule } from './inventory/inventory.module';
 
 @Module({
   imports: [
@@ -26,6 +28,8 @@ import { OfferModule } from './offer/offer.module';
     RouterModule.forRoutes(routes),
     CacheModule,
     OrderModule,
+    DiscountModule,
+    InventoryModule,
     OfferModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],

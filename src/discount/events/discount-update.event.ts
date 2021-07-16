@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
-import DiscountUpdateService from '../services/inventory-update.service';
+import DiscountUpdateService from '../services/discount-update.service';
 
 @Controller()
 export default class DiscountUpdateEvent {

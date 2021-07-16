@@ -8,5 +8,5 @@ export interface OrderRequest {
   total_vat: number;
   payment_menthod: string;
   payment_status: string;
-  itemList: ItemList;
+  itemList: ItemList[];
 }

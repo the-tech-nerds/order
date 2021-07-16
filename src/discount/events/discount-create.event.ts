@@ -13,6 +13,8 @@ export default class DiscountCreateEvent {
     const { data } = JSON.parse(message);
     const discount = JSON.parse(data);
 
+    console.log('discount data', discount);
+
     const {
       uuid,
       name,
@@ -24,8 +26,10 @@ export default class DiscountCreateEvent {
       is_assigned,
       created_at,
       created_by,
-      items,
+      discountItems,
     } = discount;
+
+    console.log('discount items', discountItems);
 
     await this.discountCreateService.execute({
       uuid,
@@ -38,7 +42,7 @@ export default class DiscountCreateEvent {
       is_assigned,
       created_at,
       created_by,
-      items,
+      discountItems,
     });
   }
 }
