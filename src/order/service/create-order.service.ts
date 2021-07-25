@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Order } from '../entities/order.entity';
-import { OrderRequest } from '../requets/order.request';
+import { OrderCreateRequest } from '../requets/orderCreateRequest';
 
 @Injectable()
 export class CreateOrderService {
@@ -11,8 +11,10 @@ export class CreateOrderService {
     private orderRepository: Repository<Order>,
   ) {}
 
-  async create(userId: number, orderRequest: OrderRequest): Promise<Order> {
-    orderRequest.itemList.sale_price = 0;
+  async create(
+    userId: number,
+    orderRequest: OrderCreateRequest,
+  ): Promise<Order> {
     return this.orderRepository.save(orderRequest);
   }
 }

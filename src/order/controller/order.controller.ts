@@ -5,7 +5,7 @@ import {
 } from '@the-tech-nerds/common-services';
 import { Response } from 'express';
 import { Order } from '../entities/order.entity';
-import { OrderRequest } from '../requets/order.request';
+import { OrderCreateRequest } from '../requets/orderCreateRequest';
 import { CreateOrderService } from '../service/create-order.service';
 import { OrderStatusService } from '../service/order-status.service';
 
@@ -20,7 +20,7 @@ export class OrderController {
   @Post('/')
   async createOrder(
     @CurrentUser('id') userId: any,
-    @Body() orderRequest: OrderRequest,
+    @Body() orderRequest: OrderCreateRequest,
     @Res() res: Response,
   ): Promise<Response<ResponseModel>> {
     const data = await this.createOrderService.create(userId, orderRequest);
